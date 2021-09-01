@@ -31,7 +31,7 @@ public class SewaService {
 		}
     }
 
-    public void save(Sewa sewa) {
+    public void addSewa(Sewa sewa) {
         Optional<Sewa> sewaOptional = sewaRepository.findByISBN(sewa.getISBN());
 
         if (sewaOptional.isPresent()) {
@@ -53,5 +53,16 @@ public class SewaService {
 		else {
 	        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sewa tidak ada");
 		}
+    }
+
+    public void updateSewa(Long idSewa, Sewa sewa) {
+        Optional<Sewa> tmpSewa = sewaRepository.findById(idSewa);
+
+        if (tmpSewa.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Oh Oh! no mataching sewa was found");
+        }
+
+        sewaRepository.save(sewa);
+        throw new ResponseStatusException(HttpStatus.OK, "Yeayy! Succes Update!");
     }
 }

@@ -13,15 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SewaRepository extends JpaRepository<Sewa, Long> {
     Optional<Sewa> findByISBN(String ISBN);
-
-    @Query(value =
-        "SELECT "
-        + " s.id, s.tglsewa, s.lamasewa, s.keterangan, "
-        + " s.isbn, b.judul, b.pengarang, "
-        + " s.pelangganid, p.kodepel, p.nama, p.telp, p.email "
-        + "FROM Sewa s "
-        + "INNER JOIN Pelanggan p ON s.pelangganid=p.id "
-        + "INNER JOIN Buku b ON s.isbn=b.isbn "
-        + "WHERE s.id=:idSewa", nativeQuery = true)
-    List<Object[]> getSewaDetailById(@Param("idSewa") Long idSewa);
+    
 }

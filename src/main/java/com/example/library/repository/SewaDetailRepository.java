@@ -37,12 +37,4 @@ public interface SewaDetailRepository extends JpaRepository<SewaDetail, Long> {
     , nativeQuery=true)
     List<SewaDetail> getSewaDetail();  
     
-    // @Query(value = 
-    //     "SELECT "
-    //     + " S.ID, S.TGLSEWA, S.LAMASEWA, S.KETERANGAN, "
-    //     + " S.ISBN,  S.PELANGGANID, "
-    //     + " FROM SEWA S "
-       
-    // , nativeQuery=true)
-    // List<SewaDetail> getAllSewa(); 
 }
