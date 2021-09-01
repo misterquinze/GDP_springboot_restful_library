@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.library.entity.Pelanggan;
 import com.example.library.service.PelangganService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+@CrossOrigin
 @RestController
 @RequestMapping("/pelanggan")
 public class PelangganController {

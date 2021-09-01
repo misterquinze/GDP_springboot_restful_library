@@ -16,6 +16,7 @@ public class SewaDetailService {
     @Autowired
     private SewaDetailRepository sewaDetailRepository;
     
+   
     public SewaDetail getSewaDetailById(Long sewaId){
         Optional<SewaDetail> sewaDetail = sewaDetailRepository.getSewaDetailById(sewaId);
         
