@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.library.entity.Pelanggan;
 import com.example.library.service.PelangganService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @CrossOrigin
 @RestController
 @RequestMapping("/pelanggan")
 public class PelangganController {
-    
+    @Autowired
     private PelangganService pelangganService;
 
-    /**
-     * @param pelangganService
-     */
-    public PelangganController(PelangganService pelangganService) {
-        this.pelangganService = pelangganService;
-    }
+    // public PelangganController(PelangganService pelangganService) {
+    //     this.pelangganService = pelangganService;
+    // }
 
     @GetMapping("")
     public List<Pelanggan> getAllPelanggan() {
