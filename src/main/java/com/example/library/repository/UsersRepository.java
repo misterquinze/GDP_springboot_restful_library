@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface UsersRepository extends JpaRepository<Users, Long>{
     List<Users> getUserByNAMEContainingIgnoreCase(String name);
 
-    Optional<Users> getUserByUSERNAME(String usernmae);
-
+    Optional<Users> getUserByUSERNAME(String username);
+    Optional<Users> findByUSERNAME(String username);
     Optional<Users> getUserByEMAIL(String email);
 }

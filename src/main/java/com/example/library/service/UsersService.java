@@ -57,6 +57,17 @@ public class UsersService {
         return tmpUsers.get();
     }
 
+    public Users addUser(Users user){
+        Optional<Users> tmpUser = userRepository.findByUSERNAME(user.getUSERNAME());
+
+        if(tmpUser.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Yeayy!! User with matching USERNAME was found");
+        }
+
+        userRepository.save(user);
+        throw new ResponseStatusException(HttpStatus.OK, "Yeay! New User was added!"); 
+    }
+
     // public Users getUserRoleByUserId(long userId) {
     //     return userRoleViewRepository.getUserRoleByUserId(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User [name = " +name+ "] is not found"));
     // }
