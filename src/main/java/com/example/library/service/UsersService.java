@@ -3,7 +3,9 @@ package com.example.library.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.library.entity.UserRoleView;
 import com.example.library.entity.Users;
+import com.example.library.repository.UserRoleViewRepository;
 // import com.example.library.repository.UserRoleRepository;
 import com.example.library.repository.UsersRepository;
 
@@ -20,8 +22,8 @@ public class UsersService {
     // @Autowired 
     // private UserRoleRepository userRoleRepository;
 
-    // @Autowired 
-    // private UsersRepository userRepository;
+    @Autowired 
+    private UserRoleViewRepository userRoleViewRepository;
 
     public List<Users> getAll() {
         return userRepository.findAll();
@@ -48,7 +50,7 @@ public class UsersService {
     }
 
     public Users getUserByEmail(String email) {
-        Optional<Users> tmpUsers = userRepository.getUserByEMAIL(email);
+        Optional<Users> tmpUsers = userRepository.getUserByEMAILIgnoreCase(email);
 
         if (tmpUsers.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not Found");
@@ -58,7 +60,7 @@ public class UsersService {
     }
 
     public Users addUser(Users user){
-        Optional<Users> tmpUser = userRepository.findByUSERNAME(user.getUSERNAME());
+        Optional<Users> tmpUser = userRepository.getUserByUSERNAME(user.getUSERNAME());
 
         if(tmpUser.isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Yeayy!! User with matching USERNAME was found");
@@ -90,18 +92,10 @@ public class UsersService {
         throw new ResponseStatusException(HttpStatus.OK, "Succes Delete");
     }
 
-    // public Users getUserRoleByUserId(long userId) {
-    //     return userRoleViewRepository.getUserRoleByUserId(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User [name = " +name+ "] is not found"));
-    // }
+    public UserRoleView getUserRoleByEmail(String email) {
+        return userRoleViewRepository.getUserRoleByEmail(email).orElseThrow(() -> 
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
+    }
 
-    // public Users addUsers(Users users){
-    //     Optional<Users> tmpUsers = UsersRepository.findById(Users.getID());
-
-    //     if(tmpUsers.isPresent()) {
-    //         throw new ResponseStatusException(HttpStatus.CONFLICT, "Yeayy!! Pelanggan with matching KODEPEL was found");
-    //     }
-
-    //     userRepository.save(users);
-    //     throw new ResponseStatusException(HttpStatus.OK, "Yeay! New Pelanggan was added!"); 
-    // }
+    
 }
