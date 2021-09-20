@@ -1,6 +1,7 @@
 package com.example.library.entity;
 
-import java.sql.Date;
+// import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,42 +10,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class UserRoleView {
     @Id
-    @SequenceGenerator(name = "USERROLEVIEW_SEQ", allocationSize=1)
-    @GeneratedValue(generator = "USERROLEVIEW_SEQ", strategy=GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "USERROLE_SEQ", allocationSize=1)
+    @GeneratedValue(generator = "USERROLE_SEQ", strategy=GenerationType.SEQUENCE)
     private Long ID;
 
-    @Column(nullable = false)
     private Long USERID;
 
-    @Column(nullable = false)
     private Long AKTIF;
 
-    @Column(nullable = false)
     private String NAME;
 
     private String ZIPCODE;
 
-    @Column(nullable = false)
     private String EMAIL;
 
-    @Column(nullable = false)
     private String USERNAME;
     
-    @Column(nullable = false)
     private String PASSWORD;
 
-    @Column(nullable = false)
-    private Date REGISTER_DATE;
+    @CreationTimestamp
+    @Column(name="REGISTER_DATE")
+    private Timestamp REGDATE;
 
-    @Column(nullable = false)
     private Long ROLEID;
 
-    @Column(nullable = false)
     private String ROLE;
-
 
     public Long getID() {
         return this.ID;
@@ -110,12 +105,12 @@ public class UserRoleView {
         this.PASSWORD = PASSWORD;
     }
 
-    public Date getREGISTER_DATE() {
-        return this.REGISTER_DATE;
+    public Timestamp getREGDATE() {
+        return this.REGDATE;
     }
 
-    public void setREGISTER_DATE(Date REGISTER_DATE) {
-        this.REGISTER_DATE = REGISTER_DATE;
+    public void setREGDATE(Timestamp REGDATE) {
+        this.REGDATE = REGDATE;
     }
 
     public Long getROLEID() {
@@ -134,4 +129,6 @@ public class UserRoleView {
         this.ROLE = ROLE;
     }
 
+
+   
 }

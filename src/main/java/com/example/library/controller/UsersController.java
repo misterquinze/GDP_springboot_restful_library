@@ -2,6 +2,7 @@ package com.example.library.controller;
 
 import java.util.List;
 
+import com.example.library.entity.UserRoleView;
 import com.example.library.entity.Users;
 import com.example.library.service.UsersService;
 
@@ -41,6 +42,11 @@ public class UsersController {
     @GetMapping("/email/{email}")
     public Users getUserByEmail(@PathVariable(name="email") String email) {
         return userService.getUserByEmail(email);
+    }
+
+    @GetMapping("/userRole/{email}")
+    public UserRoleView getUserRole(@PathVariable(name="email") String email) {
+        return userService.getUserRoleByEmail(email);
     }
 
     @PostMapping("")
