@@ -68,6 +68,17 @@ public class UsersService {
         throw new ResponseStatusException(HttpStatus.OK, "Yeay! New User was added!"); 
     }
 
+    public void updateUser(Long userId, Users user) {
+        Optional<Users> tmpUser = userRepository.findById(userId);
+
+        if (tmpUser.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Oh Oh! no mataching user was found");
+        }
+
+        userRepository.save(user);
+        throw new ResponseStatusException(HttpStatus.OK, "Yeayy! Succes Update!");
+    }
+
     // public Users getUserRoleByUserId(long userId) {
     //     return userRoleViewRepository.getUserRoleByUserId(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User [name = " +name+ "] is not found"));
     // }
