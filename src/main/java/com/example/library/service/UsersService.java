@@ -79,6 +79,17 @@ public class UsersService {
         throw new ResponseStatusException(HttpStatus.OK, "Yeayy! Succes Update!");
     }
 
+    public void deleteUser(Long userId) {
+        Optional<Users > user = userRepository.findById(userId);
+
+        if (user.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id not found");
+        }
+
+        userRepository.deleteById(userId);
+        throw new ResponseStatusException(HttpStatus.OK, "Succes Delete");
+    }
+
     // public Users getUserRoleByUserId(long userId) {
     //     return userRoleViewRepository.getUserRoleByUserId(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User [name = " +name+ "] is not found"));
     // }
