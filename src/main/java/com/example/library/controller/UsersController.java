@@ -28,17 +28,17 @@ public class UsersController {
         return userService.getAll();
     }
 
-    @GetMapping("/users/{name}")
+    @GetMapping("/name/{name}")
     public List<Users> getUserByName(@PathVariable(name="name") String name) {
         return userService.getUserByName(name);
     }
 
-    @GetMapping("/users/{username}")
+    @GetMapping("/username/{username}")
     public Users getUserByUserName(@PathVariable(name="username") String username) {
         return userService.getUserByUserName(username);
     }
 
-    @GetMapping("/users/{email}")
+    @GetMapping("/email/{email}")
     public Users getUserByEmail(@PathVariable(name="email") String email) {
         return userService.getUserByEmail(email);
     }

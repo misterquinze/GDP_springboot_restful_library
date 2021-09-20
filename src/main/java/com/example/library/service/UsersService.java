@@ -41,7 +41,7 @@ public class UsersService {
     }
 
     public Users getUserByUserName(String username) {
-        Optional<Users> tmpUsers = userRepository.getUserByUSERNAME(username);
+        Optional<Users> tmpUsers = userRepository.findByUSERNAME(username);
 
         if (tmpUsers.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not Found");
@@ -50,7 +50,7 @@ public class UsersService {
     }
 
     public Users getUserByEmail(String email) {
-        Optional<Users> tmpUsers = userRepository.getUserByEMAILIgnoreCase(email);
+        Optional<Users> tmpUsers = userRepository.findByEMAILIgnoreCase(email);
 
         if (tmpUsers.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not Found");
@@ -60,7 +60,7 @@ public class UsersService {
     }
 
     public Users addUser(Users user){
-        Optional<Users> tmpUser = userRepository.getUserByUSERNAME(user.getUSERNAME());
+        Optional<Users> tmpUser = userRepository.findByUSERNAME(user.getUSERNAME());
 
         if(tmpUser.isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Yeayy!! User with matching USERNAME was found");

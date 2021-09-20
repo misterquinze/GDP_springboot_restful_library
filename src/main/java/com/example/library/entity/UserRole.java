@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table (name = "USERROLE")
 public class UserRole {
     @Id
     @SequenceGenerator(name = "USERROLE_SEQ", allocationSize=1)
