@@ -34,4 +34,40 @@ public class SewaDetailService {
         }
         return sewaDetail;
     }
+
+    public void addSewaDetail(SewaDetail sewaDetail) {
+        Optional<SewaDetail> sewaDetailOPtional = sewaDetailRepository.getSewaDetailById(sewaDetail.getID());
+
+        if (sewaDetailOPtional.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "A book with same ISBN number is present!");
+        }
+        else {
+            sewaDetailRepository.save(sewaDetail);
+            throw new ResponseStatusException(HttpStatus.OK, "Book data successfully saved!");
+        }
+    }
+
+    public void updateSewaDetail(Long idSewa, SewaDetail sewaDetail) {
+        Optional<SewaDetail> tmpSewa = sewaDetailRepository.findById(idSewa);
+
+        if (tmpSewa.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Oh Oh! no mataching sewa was found");
+        }
+
+        sewaDetailRepository.save(sewaDetail);
+        throw new ResponseStatusException(HttpStatus.OK, "Yeayy! Succes Update!");
+    }
+
+    public void deleteSewaDetail(Long idSewa) {
+        Optional<SewaDetail> sewaDetailOptional = sewaDetailRepository.findById(idSewa);
+
+        if(sewaDetailOptional.isPresent()){
+            sewaDetailRepository.deleteById(idSewa);
+			throw new ResponseStatusException(HttpStatus.OK, "Berhasil dihapus");
+		}
+		else {
+	        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sewa tidak ada");
+		}
+    }
+
 }
