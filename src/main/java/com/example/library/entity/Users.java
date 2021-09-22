@@ -1,6 +1,7 @@
 package com.example.library.entity;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Users {
@@ -30,10 +33,11 @@ public class Users {
     @Column(nullable = false)
     private String PASSWORD;
 
-    @Column(nullable = false)
-    private Date REGISTER_DATE;
-
+    @CreationTimestamp
+    @Column(name="REGISTER_DATE")
+    private Timestamp REGDATE;
   
+
 
     public Long getID() {
         return this.ID;
@@ -83,12 +87,13 @@ public class Users {
         this.PASSWORD = PASSWORD;
     }
 
-    public Date getREGISTER_DATE() {
-        return this.REGISTER_DATE;
+    public Timestamp getREGDATE() {
+        return this.REGDATE;
     }
 
-    public void setREGISTER_DATE(Date REGISTER_DATE) {
-        this.REGISTER_DATE = REGISTER_DATE;
+    public void setREGDATE(Timestamp REGDATE) {
+        this.REGDATE = REGDATE;
     }
+   
 
 }

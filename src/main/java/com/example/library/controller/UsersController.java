@@ -49,6 +49,11 @@ public class UsersController {
         return userService.getUserRoleByEmail(email);
     }
 
+    @GetMapping("/userRole/username/{username}")
+    public UserRoleView getUserRoleByUsername(@PathVariable(name="username") String username) {
+        return userService.getUserRoleByUsername(username);
+    }
+
     @PostMapping("")
     public void addUser(@RequestBody final Users user) {
         userService.addUser(user);

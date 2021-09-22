@@ -97,5 +97,10 @@ public class UsersService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
     }
 
+    public UserRoleView getUserRoleByUsername(String username) {
+        return userRoleViewRepository.getUserRoleByUsername(username).orElseThrow(() -> 
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
+    }
+
     
 }
