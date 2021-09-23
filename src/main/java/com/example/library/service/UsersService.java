@@ -94,13 +94,23 @@ public class UsersService {
 
     public UserRoleView getUserRoleByEmail(String email) {
         return userRoleViewRepository.getUserRoleByEmail(email).orElseThrow(() -> 
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
     }
 
     public UserRoleView getUserRoleByUsername(String username) {
         return userRoleViewRepository.getUserRoleByUsername(username).orElseThrow(() -> 
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "not found"));
     }
 
+    public UserRoleView addUserRole(UserRoleView userRoleView){
+        Optional<UserRoleView> tmpUser = userRoleViewRepository.getUserRoleByUsername(userRoleView.getUSERNAME());
+
+        if(tmpUser.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Yeayy!! User with matching USERNAME was found");
+        }
+
+        userRoleViewRepository.save(userRoleView);
+        throw new ResponseStatusException(HttpStatus.OK, "Yeay! New User was added!"); 
+    }
     
 }

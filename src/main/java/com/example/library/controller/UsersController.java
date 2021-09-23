@@ -54,6 +54,11 @@ public class UsersController {
         return userService.getUserRoleByUsername(username);
     }
 
+    @PostMapping("/userRole")
+    public void addUserRole(@RequestBody final UserRoleView userRoleView) {
+        userService.addUserRole(userRoleView);
+    }
+
     @PostMapping("")
     public void addUser(@RequestBody final Users user) {
         userService.addUser(user);
